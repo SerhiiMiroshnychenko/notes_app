@@ -1,0 +1,17 @@
+{% extends 'notes/base.html' %}
+
+{% block heading %}
+<h1>Вітаємо на сайті "NOTES"</h1>
+{% endblock %}
+
+{% block content %}
+ТУТ БУДУТЬ НОТАТКИ
+    <ul>
+    {% for n in my_notes %}
+    <li>
+        <h2>{{ n }}</h2>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
