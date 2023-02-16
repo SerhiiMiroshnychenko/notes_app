@@ -6,9 +6,10 @@
 
 {% block content %}
     <div class="content">
-        {% for n in my_notes %}
+        {% for note in notes_list %}
             <div class="note">
-                <p>{{ n }}</p>
+                <h4>{{ note.title }}</h4>
+                <p>{{ note.text|truncatewords:20 }}</p>
             </div>
         {% endfor %}
     </div>

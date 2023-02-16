@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+    <meta charset="utf-8">
 	<title>{{title}}</title>
 	<link type="text/css" href="{% static 'notes/css/styles.css' %}" rel="stylesheet" />
 </head>
@@ -12,15 +13,25 @@
     {% endblock %}
 </header>
 
+{% block top_animator %}
+    <div class="animator">
+        <svg  height="20" width="auto">
+            <circle cx="10" cy="10" r="10" fill="khaki">
+                <animate attributeName="cx" from="0" to="2000" dur="100s" fill="freeze" repeatCount="10"/>
+            </circle>
+        </svg>
+    </div>
+{% endblock %}
+
 
 {% block content %}
 {% endblock %}
 
-{% block animator %}
+{% block bottom_animator %}
     <div class="animator">
         <svg  height="100" width="auto">
-            <circle cx="10" cy="50" r="50" fill="gold">
-                <animate attributeName="cx" from="0" to="2000" dur="10s" fill="freeze" repeatCount="10"/>
+            <circle cx="10" cy="50" r="50" fill="khaki">
+                <animate attributeName="cx" from="0" to="2000" dur="100s" fill="freeze" repeatCount="10"/>
             </circle>
         </svg>
     </div>

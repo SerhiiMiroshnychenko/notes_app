@@ -16,6 +16,10 @@ header {
     background-color: lightblue;
     text-align: center;
     height: 100px;
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50px 10px;
 }
 
 header:hover {
@@ -23,7 +27,7 @@ header:hover {
     color: darkblue;
 }
 
-.animator {
+.bottom_animator {
     margin-top: 10px;
 }
 
@@ -35,22 +39,23 @@ footer {
 
 .content {
     background-color: lightblue;
+    margin-left: 10px;
 }
 
 .note {
-    margin: 0 auto;
     text-align: center;
     background-color: khaki;
-    padding: 0px;
-    margin-top: 30px;
+    padding: 10px;
+    margin: 20px;
     border: 5px solid rgb(223, 214, 130);
     border-radius: 25px;
-    width: 600px;
-    font-size: 30px;
+    width: auto;
+    font-size: 20px;
 }
 
 .note :hover {
-    letter-spacing: 4px;
+    font-style: italic;
+    color: darkblue;
 }
 
 .contacts img {

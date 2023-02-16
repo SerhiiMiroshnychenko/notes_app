@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-my_notes = ['Нотатка 1', 'Нотатка 2', 'Нотатка 3']
+from .models import Note
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'notes/index.html',
-                  {'title': 'Додаток NOTES', 'my_notes': my_notes})
+def get_notes_list(request):
+    context = {'notes_list': Note.objects.all()}
+    return render(request, 'notes/index.html', context)
