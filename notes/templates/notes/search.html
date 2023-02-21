@@ -1,0 +1,29 @@
+{% extends 'notes/base.html' %}
+
+
+{% block header %}
+    <h1>ПОШУК</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="forma">
+        <form action="{% url "search" %}" method="GET">
+    <input type="text" name="title" />
+    <button type="submit">Пошук</button>
+</form>
+    <h1>Результат:</h1>
+        <ul>
+            {% for note in object_list %}
+                <div class="note">
+                    <p style="color: darkgoldenrod">{{ note.category }}</p>
+                    <h1>{{note.title}}</h1>
+                    {{note.text|truncatewords:10}}
+                    <h2>{{note.reminder}}</h2>
+                </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}

@@ -62,7 +62,7 @@ ROOT_URLCONF = 'notes_app.urls'  # Основна конфігурація URL �
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'notes/templates']
+        'DIRS': [BASE_DIR / 'notes/templates', BASE_DIR / 'notes/templatetags']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk-UA'
 
 TIME_ZONE = 'UTC'
 

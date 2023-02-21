@@ -1,4 +1,5 @@
 {% load static %}
+{% load notes_tags %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -13,16 +14,62 @@
     {% endblock %}
 </header>
 
+{% block mainmenu %}
+    <section>
+        <div>
+            <div>
+                <div>
+                        <a class="note" style="text-decoration: none;
+                                  color: rgb(20, 75, 135);
+                                  margin-left: 150px;
+                                  margin-right: 5px;
+                                  font-size: 26px;
+                                  font-weight: bold;
+                        " href="/addpage/">Додати статтю</a>
+                        <a class="note" style="text-decoration: none;
+                                      color: rgb(20, 75, 135);
+                                      margin: 5px;
+                                      font-size: 26px;
+                                      font-weight: bold;
+                            " href="/addcat/">Додати категорію</a>
+                        <a class="note" style="text-decoration: none;
+                              color: rgb(20, 75, 135);
+                              margin: 5px;
+                              font-size: 26px;
+                              font-weight: bold;
+                    " href="/search/">Пошук</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
 {% block top_animator %}
     <div class="animator">
         <svg  height="20" width="auto">
-            <circle cx="10" cy="10" r="10" fill="khaki">
+            <circle cx="10" cy="10" r="10" fill="maroon">
                 <animate attributeName="cx" from="0" to="2000" dur="100s" fill="freeze" repeatCount="10"/>
             </circle>
         </svg>
     </div>
 {% endblock %}
 
+{% block category %}
+    <div style="padding-top: 25px">
+        <a class="note" style="text-decoration: none;
+                          color: rgb(20, 75, 135);
+                          margin-left: 150px;
+                          margin-right: 5px;
+                          font-size: 26px;
+                          font-weight: bold;
+                " href="{% url 'home' %}">Всі категорії</a>  <!-- Інакше як посилання -->
+
+		{% show_categories cat_selected %} <!-- Викликаємо тег із вкладенням (з двома параметрами) -->
+    </div>
+
+
+{% endblock %}
 
 {% block content %}
 {% endblock %}

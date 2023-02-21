@@ -58,6 +58,7 @@ footer {
     color: darkblue;
 }
 
+
 .contacts img {
     height: 35px;
     width: 35px;
@@ -82,4 +83,15 @@ footer {
     font-size: 10pt;
     text-align: right;
     padding-bottom: 10px;
+}
+
+.forma {
+    margin-left: 100px;
+}
+
+.cats {
+    text-decoration: none;
+    color: rgb(20, 75, 135);
+    margin: 100px;
+    font-size: 26px;
 }

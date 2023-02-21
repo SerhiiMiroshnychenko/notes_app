@@ -1,17 +1,26 @@
 {% extends 'notes/base.html' %}
 
 {% block header %}
-    <h1>Вітаємо на сайті "NOTES"</h1>
+    <h1 style="font-family: Georgia, serif">НОТАТКИ</h1>
 {% endblock %}
+
+
 
 {% block content %}
     <div class="content">
-        {% for note in notes_list %}
+        {% for note in object_list %}
             <div class="note">
+                <p style="color: darkgoldenrod">Категорія: {{ note.category }}</p>
                 <h4>{{ note.title }}</h4>
                 <p>{{ note.text|truncatewords:20 }}</p>
+                <p>{{ note.reminder }}</p>
+                <p><a style='text-decoration: none;
+                          color: khaki;
+                          margin: 100px;
+                          font-size: 18px;
+                          background-color: rgb(43,84,131);
+                          font-weight: bold;' href="/post/{{ note.id }}/">читати нотатку</a></p>
             </div>
         {% endfor %}
     </div>
 {% endblock %}
-

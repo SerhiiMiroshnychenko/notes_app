@@ -1,0 +1,17 @@
+{% for c in cats %}  <!-- Для кожної категорії із всіх категорій -->
+    {% if c.pk == cat_selected %}  <!-- Якщо категорія вибрана, тобто ми на сторінці цієї категорії -->
+        <p class="note" style="text-decoration: none;
+                          color: rgb(20, 75, 135);
+                          margin: 5px;
+                          font-size: 26px;
+                          font-weight: bold;">{{c.title}}</p>  <!-- Як звичайний текст, а не посилання -->
+    {% else %}
+         <a class="note" style="text-decoration: none;
+                          color: rgb(20, 75, 135);
+                          margin: 5px;
+                          font-size: 26px;
+                          font-weight: bold;
+                " href="/?category={{ c.id }}">{{c.title}}</a>  <!-- Інакше як посилання -->
+    {% endif %}
+
+{% endfor %}

@@ -1,0 +1,30 @@
+{% extends 'notes/base.html' %}
+
+{% block header %}
+    <h1>Нотатка № {{ post.id }}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="note">
+        <p style="color: darkgoldenrod">Категорія: {{ post.category }}</p>
+        <h1>{{post.title}}</h1>
+        {{post.text|linebreaks}}
+        <h2>{{post.reminder}}</h2>
+        <a style='text-decoration: none;
+                          color: khaki;
+                          margin: 100px;
+                          font-size: 18px;
+                          background-color: rgb(43,84,131);
+                          font-weight: bold;'
+           href="/post/{{ post.id }}/edit">Редагувати</a>
+        <a style='text-decoration: none;
+                          color: khaki;
+                          margin: 100px;
+                          font-size: 18px;
+                          background-color: brown;
+                          font-weight: bold;'
+           href="/post/{{ post.id }}/delete" onclick="return confirm('Ви впевнені, що хочете видалити цю нотатку?')">Видалити</a>
+    </div>
+
+
+{% endblock %}
