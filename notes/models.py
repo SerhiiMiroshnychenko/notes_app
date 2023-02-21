@@ -5,7 +5,7 @@ from django.urls import reverse
 
 # Create your models here.
 class Category(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=15, verbose_name='Категорія')
 
     class Meta:
         verbose_name = _("Категорія")
