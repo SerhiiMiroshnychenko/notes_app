@@ -18,8 +18,14 @@
                 <div class="note">
                     <p style="color: darkgoldenrod">{{ note.category }}</p>
                     <h1>{{note.title}}</h1>
-                    {{note.text|truncatewords:10}}
+                    {{note.text|truncatewords:20}}
                     <h2>{{note.reminder}}</h2>
+                    <p><a style='text-decoration: none;
+                          color: khaki;
+                          margin: 100px;
+                          font-size: 18px;
+                          background-color: rgb(43,84,131);
+                          font-weight: bold;' href="/post/{{ note.id }}/">читати нотатку</a></p>
                 </div>
             {% endfor %}
         </ul>
