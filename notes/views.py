@@ -88,7 +88,6 @@ def show_post(request, post_id):
 
 
 def edit_note(request, post_id):
-    print(f'In edit_note: {post_id}')
     my_note = get_object_or_404(Note, pk=post_id)
     if request.method == 'POST':
         form = UpdateForm(request.POST, instance=my_note)
