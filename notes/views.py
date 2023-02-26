@@ -1,9 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from .models import Note
-from .forms import *
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .forms import *
+from .models import *
+from .utils import *
 
 
 menu = [{'title': "Про сайт", 'url_name': 'home'},
@@ -11,18 +14,17 @@ menu = [{'title': "Про сайт", 'url_name': 'home'},
         {'title': "Категорії", 'url_name': 'notes'},
         {'title': "Category", 'url_name': 'cats'}]
 
+
 # Create your views here.
-class NotesHome(ListView):
+class NotesHome(DataMixin, ListView):
     model = Note  # Модель список екземплярів якої будемо подавати
     template_name = 'notes/index.html'  # Адреса шаблону, куди подавати
     context_object_name = 'notes_list'  # Ім'я з яким викликається в шаблоні index.html
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)  # Передаємо вже сформований контекст
-        context['menu'] = menu
-        context['title'] = 'Головна сторінка'
-        context['cat_selected'] = 0
-        return context
+        c_def = self.get_user_context(title="Головна сторінка")
+        return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
         return Note.objects.all()
@@ -32,7 +34,7 @@ class NotesHome(ListView):
 #     context = {'notes_list': Note.objects.all()}
 #     return render(request, 'notes/index.html', context)
 
-class AddPage(CreateView):
+class AddPage(DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'notes/addpage.html'
     success_url = reverse_lazy('home')  # Маршрут, куди ми перейдемо після додавання статті
@@ -42,12 +44,11 @@ class AddPage(CreateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Додавання статті'
-        context['menu'] = menu
-        return context
+        c_def = self.get_user_context(title="Додавання статті")
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-class AddCat(CreateView):
+class AddCat(DataMixin, CreateView):
     form_class = AddCatForm
     template_name = 'notes/addcat.html'
     success_url = reverse_lazy('home')  # Маршрут, куди ми перейдемо після додавання статті
@@ -57,17 +58,19 @@ class AddCat(CreateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Додавання категорії'
-        context['menu'] = menu
-        return context
+        # context['title'] = 'Додавання категорії'
+        # context['menu'] = menu
+        # return context
+        c_def = self.get_user_context(title="Додавання категорії")
+        return dict(list(context.items()) + list(c_def.items()))
+
 
 class NotesListView(ListView):
 
     template_name = 'notes/index.html'
 
     def get_queryset(self):
-        notes_category = self.request.GET.get('category', None)
-        if notes_category:
+        if notes_category := self.request.GET.get('category', None):
             self.queryset = Note.objects.filter(category=notes_category)
         else:
             self.queryset = Note.objects.all()
